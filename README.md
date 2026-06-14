@@ -25,3 +25,4 @@ npm run dev
 - **Gold** `#C9A84C` — machine learning
 - **Red** `#C03A2B` — truth, validation
 - Motto: *veritas per aquam*
+# euphemia-site
