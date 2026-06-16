@@ -619,7 +619,7 @@ export default function Home() {
             If you have a target and want to understand its hydration, let&apos;s talk.
           </p>
           <a
-            href="mailto:hello@euphemia.science"
+            href="mailto:info@euphemia.ai"
             style={{
               display: "inline-block",
               background: "transparent",
@@ -643,7 +643,7 @@ export default function Home() {
               (e.target as HTMLElement).style.borderColor = "rgba(201,168,76,0.5)";
             }}
           >
-            hello@euphemia.science
+            info@euphemia.ai
           </a>
         </div>
       </section>
