@@ -17,17 +17,15 @@ $tmp      = Join-Path ([System.IO.Path]::GetTempPath()) "euphemia-site-wiki"
 
 # docs filename -> wiki page filename (wiki page titles are title case)
 $fileMap = @{
-    "README.md"        = "Home.md"
-    "website-brief.md" = "Website-brief.md"
-    "development.md"   = "Development.md"
-    "science.md"       = "Science.md"
+    "README.md"      = "Home.md"
+    "development.md" = "Development.md"
+    "science.md"     = "Science.md"
 }
 
 # relative markdown links in docs -> wiki page slugs
 $linkMap = @{
-    "](website-brief.md)" = "](Website-brief)"
-    "](development.md)"   = "](Development)"
-    "](science.md)"       = "](Science)"
+    "](development.md)" = "](Development)"
+    "](science.md)"     = "](Science)"
 }
 
 if (Test-Path $tmp) { Remove-Item $tmp -Recurse -Force }

@@ -5,8 +5,8 @@ How to maintain the Euphemia marketing site.
 ## Where things are
 
 - Copy (all wording): `content/site.ts`
-- Science references: `REFERENCES.md`
-- Design tokens: `app/theme.ts` and `app/globals.css`
+- Science claims and references: [Science](science.md)
+- Design tokens (colors, fonts): `app/globals.css`
 - Animations: `components/`
 - Git workflow: repo `README.md`
 

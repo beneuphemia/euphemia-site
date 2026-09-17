@@ -23,8 +23,8 @@ Prints a temporary `https://*.trycloudflare.com` URL.
 ## Where things live
 
 - Copy (all wording): `content/site.ts`
-- Science references: `REFERENCES.md`
-- Design tokens: `app/theme.ts` and `app/globals.css`
+- Science claims and references: [docs/science.md](docs/science.md)
+- Design tokens (colors, fonts): `app/globals.css`
 - Animations: `components/`
 - Docs: `docs/`
 
