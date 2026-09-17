@@ -8,46 +8,95 @@
 ```bash
 npm install
 npm run dev          # development
+# or, production:
 npm run build
-npm run start        # production: http://localhost:3000
+npm run start        # http://localhost:3000
 ```
 
-## Share via Cloudflare
+## Share with the team (Cloudflare quick tunnel)
+
+Requires [`cloudflared`](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/).
 
 ```bash
+# 1. start the site (dev or production build, see above)
+npm run dev          # or: npm run build && npm run start
+
+# 2. expose it with a temporary public URL
 cloudflared tunnel --url http://localhost:3000
 ```
 
-Prints a temporary `https://*.trycloudflare.com` URL.
+`cloudflared` prints a `https://<random>.trycloudflare.com` link to share. It is
+ephemeral: it only lives while that command is running and has no uptime guarantee.
+For a stable link use a named tunnel or a Vercel preview deploy.
 
-## Where things live
+## Compare two versions side by side
 
-- Copy (all wording): `content/site.ts`
-- Science claims and references: [docs/science.md](docs/science.md)
-- Design tokens (colors, fonts): `app/globals.css`
-- Animations: `components/`
-- Docs: `docs/`
+Run each version on its own port, then tunnel each one separately:
+
+```bash
+# integrated (develop/develop)
+npm run build && npm run start          # http://localhost:3000
+cloudflared tunnel --url http://localhost:3000
+
+# Gemini redesign (develop/redesign1, or the euphemia-site1 repo)
+npx next start <dir> -p 3001 -H 0.0.0.0 # http://localhost:3001
+cloudflared tunnel --url http://localhost:3001
+```
+
+## Project layout
+
+- `content/site.ts`: single source of truth for all website copy. To change wording, edit this file only.
+- `app/theme.ts`: design tokens (colors, glows, type families).
+- `app/globals.css`: CSS variables wired to the theme tokens.
+- `components/`: UI components. The simulations and animations live in:
+  - `HeroSimulation.tsx`: interactive 3D binding-cavity simulation (hero).
+  - `SolvationFieldAnimation.tsx`: full-bleed solvation-field background animation (full page).
+  - `InteractiveHydrationExplorer.tsx`: 2D pocket hydration explorer with example targets.
 
 ## Git workflow
 
-Branches: `main`, `develop/develop`, `develop/matt`, `develop/ben`.
+Long-lived branches:
 
-1. Work on your branch (`develop/matt` or `develop/ben`), then open a PR into `develop/develop`.
-2. The other person reviews and merges into `develop/develop`.
-3. Go-live: one PR from `develop/develop` into `main`, both approve, a human merges. Vercel deploys it.
-4. After merging to `main`, sync the GitHub wiki:
+- `main`: production, deployed to Vercel on merge. Nothing merges here except a single, jointly-approved go-live PR.
+- `develop/develop`: shared integration branch. All work lands here first.
+- `develop/matt`: Matt's personal branch.
+- `develop/ben`: Ben's (CSO) personal branch.
 
-Review rules:
+Day-to-day:
 
-- PRs to `main` require 2 human approvals (Matt + Ben).
-- Never approve your own PR: PRs to `develop/develop` are reviewed by the other person.
-- No auto-approve or auto-merge, ever.
-- Agents must not approve or merge PRs: see `AGENTS.md` (euph-site-agent).
+1. Matt works on `develop/matt`, then opens a PR from `develop/matt` into `develop/develop`.
+2. Ben (CSO) works on `develop/ben`, then opens a PR from `develop/ben` into `develop/develop`.
+3. Review and merge each other's PRs into `develop/develop`.
+4. Go-live: when both are happy, open one PR from `develop/develop` into `main`, get both approvals, then merge. Vercel deploys it.
 
-Agents: use the agent in `AGENTS.md` (euph-site-agent) for any AI work in this repo.
-When something goes wrong or a rule is missing, correct and improve `AGENTS.md`
-so lessons learned carry forward to every future agent.
+Copy and science changes:
 
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts\sync-wiki.ps1
-```
+- All wording lives in `content/site.ts`. Edit it there.
+- Every science claim must be referenced in `REFERENCES.md` before merging.
+
+## Design system: color tokens
+
+The palette (named in the redesign):
+
+- **Physics Blue** `#1B4FD8`: physics, simulation
+- **ML Gold** `#C9A84C`: machine learning
+- **Truth Crimson** `#C03A2B`: truth, validation
+- **Obsidian Inks** `#080A10`: backgrounds and surfaces
+- **Technical mist accents** `#8B91B0`: secondary text
+
+Motto: *veritas per aquam*
+
+## Science accuracy
+
+The simulations and animations in `components/` are currently illustrative demos,
+not validated results. Before any number, target case study, or mechanism claim is
+asserted publicly it must be backed by a real source. Track that in
+[`REFERENCES.md`](./REFERENCES.md), which maps each on-site claim to its citation.
+Status: pending scientific review.
+
+## Deploy to Vercel
+
+1. Push this repo to GitHub
+2. Go to [vercel.com/new](https://vercel.com/new)
+3. Import the GitHub repo. Vercel detects Next.js automatically
+4. Deploy. No environment variables required
