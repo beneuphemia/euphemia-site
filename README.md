@@ -5,6 +5,14 @@ Physics-based drug discovery. Water network and solvation modelling specialists.
 **Stack:** Next.js 16 · TypeScript · Tailwind CSS
 **Deploy:** Vercel (auto-deploy on push to `main`)
 
+## Documentation (wiki)
+
+See the [`docs/`](docs/README.md) folder:
+
+- [Website brief](docs/website-brief.md): who we are, what the site is for.
+- [Development](docs/development.md): how to run it and where the copy and animations live.
+- [Science](docs/science.md): how to keep the science correct and referenced.
+
 ## Run locally
 
 ```bash
