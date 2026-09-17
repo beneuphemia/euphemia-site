@@ -8,7 +8,8 @@ How to maintain the Euphemia marketing site.
 - Science claims and references: [Science](science.md)
 - Design tokens (colors, fonts): `app/globals.css`
 - Animations: `components/`
-- Git workflow: repo `README.md`
+- Git workflow and review rules: repo `README.md`
+- Agent rules: repo `AGENTS.md` (euph-site-agent)
 
 ## Pages
 
