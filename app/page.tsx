@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import HeroSimulation from "@/components/HeroSimulation";
+import SolvationFieldAnimation from "@/components/SolvationFieldAnimation";
 import InteractiveHydrationExplorer from "@/components/InteractiveHydrationExplorer";
 import SciencePillars from "@/components/SciencePillars";
 import WorkflowPipeline from "@/components/WorkflowPipeline";
@@ -22,6 +23,9 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-32 overflow-hidden tech-grid-bg">
+        {/* Dynamic Solvation Field Background Animation */}
+        <SolvationFieldAnimation />
+
         {/* Subtle Ambient Radial Glows */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#1B4FD8]/10 rounded-full blur-[140px] pointer-events-none" />
         <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-[#C9A84C]/8 rounded-full blur-[120px] pointer-events-none" />
