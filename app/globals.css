@@ -1,36 +1,67 @@
 @import "tailwindcss";
 
 :root {
+  /* Central Brand Tokens */
   --physics: #1B4FD8;
   --physics-light: #3B6EF5;
   --physics-dark: #0F2E8A;
+  --physics-glow: rgba(27, 79, 216, 0.25);
+  
   --ml: #C9A84C;
   --ml-light: #E8C96A;
+  --ml-dark: #9E7F30;
+  --ml-glow: rgba(201, 168, 76, 0.22);
+  
   --truth: #C03A2B;
-  --ink: #0A0C14;
-  --ink-mid: #1C2033;
-  --ink-soft: #2E3250;
+  --truth-light: #E74C3C;
+  --truth-glow: rgba(192, 58, 43, 0.22);
+  
+  --ink: #080A10;
+  --ink-subtle: #0C0F1A;
+  --ink-mid: #121727;
+  --ink-card: #141829;
+  --ink-card-hover: #192038;
+  --ink-soft: #252B44;
+  --ink-border: rgba(255, 255, 255, 0.08);
+  --ink-border-hover: rgba(255, 255, 255, 0.16);
+
   --mist: #8B91B0;
+  --mist-light: #C0C5DF;
   --fog: #E8EAF2;
   --white: #FAFBFF;
 }
 
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   background: var(--ink);
   color: var(--white);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
   overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ink-soft);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--mist);
 }
 
 @keyframes grain {
@@ -48,12 +79,12 @@ body {
 }
 
 @keyframes pulse-ring {
-  0% { transform: scale(0.8); opacity: 0.8; }
-  100% { transform: scale(2.4); opacity: 0; }
+  0% { transform: scale(0.85); opacity: 0.8; }
+  100% { transform: scale(2.2); opacity: 0; }
 }
 
 @keyframes float-up {
-  0% { opacity: 0; transform: translateY(32px); }
+  0% { opacity: 0; transform: translateY(24px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 
@@ -63,7 +94,7 @@ body {
 }
 
 .animate-float-up {
-  animation: float-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: float-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .delay-100 { animation-delay: 0.1s; opacity: 0; }
@@ -78,9 +109,19 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: shimmer 4s linear infinite;
+  animation: shimmer 5s linear infinite;
 }
 
+.physics-shimmer {
+  background: linear-gradient(90deg, var(--physics-light) 0%, #70A0FF 40%, var(--physics-light) 60%, #70A0FF 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 6s linear infinite;
+}
+
+/* Subtle Film Grain */
 .noise-overlay::after {
   content: '';
   position: fixed;
@@ -88,8 +129,41 @@ body {
   width: 200%;
   height: 200%;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-  opacity: 0.025;
+  opacity: 0.022;
   pointer-events: none;
-  z-index: 100;
+  z-index: 99;
   animation: grain 8s steps(10) infinite;
+}
+
+/* Glassmorphic and subtle glowing cards */
+.glass-panel {
+  background: rgba(18, 23, 39, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--ink-border);
+}
+
+.glass-panel-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel-hover:hover {
+  background: rgba(22, 28, 48, 0.85);
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+}
+
+/* Grid backgrounds */
+.tech-grid-bg {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.glow-radial-physics {
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(27, 79, 216, 0.16) 0%, transparent 70%);
+}
+
+.glow-radial-ml {
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(201, 168, 76, 0.12) 0%, transparent 70%);
 }
