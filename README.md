@@ -1,7 +1,5 @@
 # Euphemia: Marketing Site
 
-Physics-based drug discovery. Water network and solvation modelling specialists.
-
 **Stack:** Next.js 16 · TypeScript · Tailwind CSS
 **Deploy:** Vercel (auto-deploy on push to `main`)
 
