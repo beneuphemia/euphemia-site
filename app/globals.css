@@ -89,7 +89,7 @@ body {
 }
 
 @keyframes shimmer {
-  0% { background-position: 0% center; }
+  0% { background-position: -200% center; }
   100% { background-position: 200% center; }
 }
 
@@ -104,37 +104,21 @@ body {
 .delay-700 { animation-delay: 0.7s; opacity: 0; }
 
 .gold-shimmer {
-  background: linear-gradient(
-    90deg,
-    var(--ml-dark) 0%,
-    var(--ml) 25%,
-    var(--ml-light) 50%,
-    var(--ml) 75%,
-    var(--ml-dark) 100%
-  );
+  background: linear-gradient(90deg, var(--ml) 0%, var(--ml-light) 40%, var(--ml) 60%, var(--ml-light) 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
-  background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: transparent;
-  animation: shimmer 3s linear infinite;
+  background-clip: text;
+  animation: shimmer 5s linear infinite;
 }
 
 .physics-shimmer {
-  background: linear-gradient(
-    90deg,
-    var(--physics-dark) 0%,
-    var(--physics) 25%,
-    var(--physics-light) 50%,
-    var(--physics) 75%,
-    var(--physics-dark) 100%
-  );
+  background: linear-gradient(90deg, var(--physics-light) 0%, #70A0FF 40%, var(--physics-light) 60%, #70A0FF 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
-  background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: transparent;
-  animation: shimmer 3s linear infinite;
+  background-clip: text;
+  animation: shimmer 6s linear infinite;
 }
 
 /* Subtle Film Grain */
