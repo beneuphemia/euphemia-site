@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { X, Send, CheckCircle2, ShieldCheck, Mail } from "lucide-react";
+import { site } from "@/content/site";
 
 interface PartnershipModalProps {
   isOpen: boolean;
@@ -14,8 +15,7 @@ export default function PartnershipModal({ isOpen, onClose }: PartnershipModalPr
     name: "",
     email: "",
     organization: "",
-    targetClass: "Kinase / ATP Pocket",
-    stage: "Hit-to-Lead Optimization",
+    targetClass: site.modal.targetFamilies[0],
     targetNotes: "",
   });
 
@@ -23,18 +23,15 @@ export default function PartnershipModal({ isOpen, onClose }: PartnershipModalPr
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate successful receipt
     setSubmitted(true);
   };
 
-  const mailtoLink = `mailto:info@euphemia.ai?subject=Euphemia%20Target%20Hydration%20Inquiry%20-%20${encodeURIComponent(
+  const mailtoLink = `mailto:${site.contact.email}?subject=Euphemia%20Target%20Hydration%20Inquiry%20-%20${encodeURIComponent(
     formData.organization || "Biopharma Partner"
   )}&body=Name:%20${encodeURIComponent(formData.name)}%0AOrganization:%20${encodeURIComponent(
     formData.organization
   )}%0AEmail:%20${encodeURIComponent(formData.email)}%0ATarget%20Class:%20${encodeURIComponent(
     formData.targetClass
-  )}%0APipeline%20Stage:%20${encodeURIComponent(
-    formData.stage
   )}%0ANotes:%20${encodeURIComponent(formData.targetNotes)}`;
 
   return (
@@ -63,42 +60,42 @@ export default function PartnershipModal({ isOpen, onClose }: PartnershipModalPr
             <div className="flex items-center gap-2 mb-2">
               <span className="w-2 h-2 rounded-full bg-[#1B4FD8]" />
               <span className="text-[0.7rem] font-mono uppercase tracking-widest text-[#70A0FF]">
-                Biopharma Partnership &middot; Diligence
+                {site.modal.eyebrow}
               </span>
             </div>
             <h3 className="text-xl sm:text-2xl font-bold text-[#FAFBFF] tracking-tight">
-              Request a Target Hydration Audit
+              {site.modal.heading}
             </h3>
             <p className="text-xs sm:text-sm text-[#8B91B0] mt-1.5 leading-relaxed">
-              Tell us about your therapeutic target or evaluation criteria. All inquiries are strictly confidential under mutual standard CDAs.
+              {site.modal.body}
             </p>
 
             <form onSubmit={handleSubmit} className="mt-6 space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-mono uppercase text-[#8B91B0] mb-1">
-                    Your Name *
+                    {site.modal.fields.name} *
                   </label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Dr. Jane Smith"
+                    placeholder={site.modal.placeholders.name}
                     className="w-full px-3 py-2 text-sm rounded-sm bg-[#121727] border border-white/[0.08] text-[#FAFBFF] focus:outline-none focus:border-[#C9A84C] transition-colors"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-mono uppercase text-[#8B91B0] mb-1">
-                    Work Email *
+                    {site.modal.fields.email} *
                   </label>
                   <input
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="jsmith@biotech.com"
+                    placeholder={site.modal.placeholders.email}
                     className="w-full px-3 py-2 text-sm rounded-sm bg-[#121727] border border-white/[0.08] text-[#FAFBFF] focus:outline-none focus:border-[#C9A84C] transition-colors"
                   />
                 </div>
@@ -107,47 +104,43 @@ export default function PartnershipModal({ isOpen, onClose }: PartnershipModalPr
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-mono uppercase text-[#8B91B0] mb-1">
-                    Organization / Fund *
+                    {site.modal.fields.organization} *
                   </label>
                   <input
                     type="text"
                     required
                     value={formData.organization}
                     onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                    placeholder="Biopharma / VC Name"
+                    placeholder={site.modal.placeholders.organization}
                     className="w-full px-3 py-2 text-sm rounded-sm bg-[#121727] border border-white/[0.08] text-[#FAFBFF] focus:outline-none focus:border-[#C9A84C] transition-colors"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-mono uppercase text-[#8B91B0] mb-1">
-                    Target Family
+                    {site.modal.fields.targetFamily}
                   </label>
                   <select
                     value={formData.targetClass}
                     onChange={(e) => setFormData({ ...formData, targetClass: e.target.value })}
                     className="w-full px-3 py-2 text-sm rounded-sm bg-[#121727] border border-white/[0.08] text-[#FAFBFF] focus:outline-none focus:border-[#C9A84C] transition-colors"
                   >
-                    <option>Kinase / ATP Pocket</option>
-                    <option>Cryptic / Undruggable Pocket (KRAS, etc)</option>
-                    <option>Protein-Protein Interaction (PPI)</option>
-                    <option>GPCR / Allosteric Site</option>
-                    <option>Protease / Hydrolase</option>
-                    <option>VC Evaluation / Institutional Diligence</option>
-                    <option>Other Therapeutic Class</option>
+                    {site.modal.targetFamilies.map((option) => (
+                      <option key={option}>{option}</option>
+                    ))}
                   </select>
                 </div>
               </div>
 
               <div>
                 <label className="block text-xs font-mono uppercase text-[#8B91B0] mb-1">
-                  Target Scope or PDB Code (Optional)
+                  {site.modal.fields.targetNotes}
                 </label>
                 <textarea
                   rows={3}
                   value={formData.targetNotes}
                   onChange={(e) => setFormData({ ...formData, targetNotes: e.target.value })}
-                  placeholder="e.g. Evaluating lead series selectivity across CDK isoforms, PDB 1HCK; interested in 4-week pilot campaign."
+                  placeholder={site.modal.placeholders.targetNotes}
                   className="w-full px-3 py-2 text-sm rounded-sm bg-[#121727] border border-white/[0.08] text-[#FAFBFF] focus:outline-none focus:border-[#C9A84C] transition-colors resize-none"
                 />
               </div>
@@ -155,7 +148,7 @@ export default function PartnershipModal({ isOpen, onClose }: PartnershipModalPr
               {/* Confidentiality Assurance */}
               <div className="flex items-center gap-2 text-xs text-[#8B91B0] pt-1">
                 <ShieldCheck className="w-4 h-4 text-[#C9A84C] shrink-0" />
-                <span>Strict non-disclosure. We routinely execute bilateral CDAs before data transfer.</span>
+                <span>{site.modal.assurance}</span>
               </div>
 
               {/* Actions */}
@@ -165,14 +158,14 @@ export default function PartnershipModal({ isOpen, onClose }: PartnershipModalPr
                   className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-5 rounded-sm bg-[#1B4FD8] hover:bg-[#3B6EF5] text-[#FAFBFF] font-semibold text-xs tracking-wider uppercase transition-all shadow-lg cursor-pointer"
                 >
                   <Send className="w-3.5 h-3.5" />
-                  <span>Submit Partnership Request</span>
+                  <span>{site.modal.submit}</span>
                 </button>
                 <a
                   href={mailtoLink}
                   className="inline-flex items-center justify-center gap-2 py-3 px-4 rounded-sm border border-white/[0.1] text-xs font-medium text-[#FAFBFF] hover:bg-white/5 transition-colors text-center"
                 >
                   <Mail className="w-3.5 h-3.5 text-[#C9A84C]" />
-                  <span>Email Directly</span>
+                  <span>{site.modal.emailDirect}</span>
                 </a>
               </div>
             </form>
@@ -182,14 +175,12 @@ export default function PartnershipModal({ isOpen, onClose }: PartnershipModalPr
             <div className="w-12 h-12 rounded-full bg-[#C9A84C]/10 border border-[#C9A84C]/40 text-[#C9A84C] flex items-center justify-center mx-auto">
               <CheckCircle2 className="w-6 h-6" />
             </div>
-            <h4 className="text-xl font-bold text-[#FAFBFF]">
-              Request Received
-            </h4>
+            <h4 className="text-xl font-bold text-[#FAFBFF]">{site.modal.successTitle}</h4>
             <p className="text-sm text-[#8B91B0] max-w-sm mx-auto">
-              Thank you, {formData.name || "Colleague"}. Our scientific leadership team will review your target inquiry and get back to you within 24 business hours.
+              {site.modal.successBody.replace("{name}", formData.name || "Colleague")}
             </p>
             <div className="p-3 bg-[#121727] rounded-sm text-xs font-mono text-[#D4D8EB] max-w-xs mx-auto">
-              Direct Contact: <span className="text-[#C9A84C]">info@euphemia.ai</span>
+              Direct Contact: <span className="text-[#C9A84C]">{site.contact.email}</span>
             </div>
             <button
               type="button"
@@ -199,7 +190,7 @@ export default function PartnershipModal({ isOpen, onClose }: PartnershipModalPr
               }}
               className="mt-4 px-6 py-2 rounded-sm bg-white/10 hover:bg-white/15 text-xs text-[#FAFBFF] transition-colors cursor-pointer"
             >
-              Close
+              {site.modal.close}
             </button>
           </div>
         )}

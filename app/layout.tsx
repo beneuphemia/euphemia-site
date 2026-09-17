@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { site } from "@/content/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -9,12 +10,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Euphemia — Physics-Based Drug Discovery & Solvation Science",
-  description: "Computational drug discovery powered by rigorous molecular physics simulation and machine learning. Mapping cryptic binding-site water networks and solvation thermodynamics.",
-  keywords: ["drug discovery", "molecular simulation", "computational chemistry", "FEP", "solvation", "water networks", "biophysics", "GCMC"],
+  title: site.meta.title,
+  description: site.meta.description,
+  keywords: site.meta.keywords,
   openGraph: {
-    title: "Euphemia — Physics-Based Drug Discovery",
-    description: "Where rigorous molecular physics meets computational drug discovery.",
+    title: site.meta.ogTitle,
+    description: site.meta.ogDescription,
     type: "website",
   },
 };

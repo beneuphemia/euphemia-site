@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Menu, X, ArrowRight, Sparkles } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
+import { site } from "@/content/site";
 
 interface NavigationProps {
   onOpenPartnerModal: () => void;
@@ -31,13 +32,7 @@ export default function Navigation({ onOpenPartnerModal }: NavigationProps) {
     };
   }, [mobileMenuOpen]);
 
-  const navLinks = [
-    { label: "Technology", href: "#technology" },
-    { label: "Science", href: "#science" },
-    { label: "Explorer", href: "#explorer" },
-    { label: "Benchmarks", href: "#benchmarks" },
-    { label: "Comparison", href: "#comparison" },
-  ];
+  const navLinks = site.nav.links;
 
   return (
     <>
@@ -62,11 +57,13 @@ export default function Navigation({ onOpenPartnerModal }: NavigationProps) {
             </div>
             <div className="flex flex-col">
               <span className="text-[1.05rem] font-bold tracking-[0.14em] text-[#FAFBFF] leading-none">
-                EUPHEMIA
+                {site.brand.name}
               </span>
-              <span className="text-[0.62rem] tracking-[0.2em] uppercase text-[#8B91B0] mt-0.5 font-medium">
-                Physics &middot; Solvation
-              </span>
+              {site.brand.tagline ? (
+                <span className="text-[0.62rem] tracking-[0.2em] uppercase text-[#8B91B0] mt-0.5 font-medium">
+                  {site.brand.tagline}
+                </span>
+              ) : null}
             </div>
           </a>
 
@@ -83,15 +80,15 @@ export default function Navigation({ onOpenPartnerModal }: NavigationProps) {
             ))}
           </nav>
 
-          {/* Desktop Action Buttons */}
+          {/* Desktop Action Button */}
           <div className="hidden md:flex items-center gap-3">
-            <button
-              onClick={onOpenPartnerModal}
-              className="inline-flex items-center gap-2 text-[0.78rem] tracking-[0.08em] uppercase font-semibold text-[#FAFBFF] bg-[#1B4FD8] hover:bg-[#3B6EF5] px-4 py-2.5 rounded-sm transition-all shadow-sm hover:shadow-[0_0_20px_rgba(27,79,216,0.35)] active:translate-y-0.5 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#3B6EF5]"
+            <a
+              href={site.nav.ctaHref}
+              className="inline-flex items-center gap-2 text-[0.78rem] tracking-[0.08em] uppercase font-semibold text-[#FAFBFF] bg-[#1B4FD8] hover:bg-[#3B6EF5] px-4 py-2.5 rounded-sm transition-all shadow-sm hover:shadow-[0_0_20px_rgba(27,79,216,0.35)] active:translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[#3B6EF5]"
             >
-              <span>Schedule Pilot</span>
+              <span>{site.nav.cta}</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+            </a>
           </div>
 
           {/* Mobile Menu Trigger (min 44px touch target) */}
@@ -119,11 +116,12 @@ export default function Navigation({ onOpenPartnerModal }: NavigationProps) {
           {/* Drawer Content */}
           <div className="fixed inset-x-0 top-[65px] bottom-0 overflow-y-auto px-6 py-8 flex flex-col justify-between">
             <div className="space-y-6">
-              {/* Partner Status Badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#121727] border border-[#C9A84C]/30 text-[0.75rem] text-[#E8C96A]">
-                <Sparkles className="w-3.5 h-3.5 text-[#C9A84C]" />
-                <span>Now Accepting Q2/Q3 2026 Partner Programs</span>
-              </div>
+              {/* Partner Status Badge (optional) */}
+              {site.nav.statusBadge ? (
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#121727] border border-[#C9A84C]/30 text-[0.75rem] text-[#E8C96A]">
+                  <span>{site.nav.statusBadge}</span>
+                </div>
+              ) : null}
 
               {/* Navigation Links */}
               <nav className="flex flex-col gap-1 pt-2" aria-label="Mobile Navigation">
@@ -150,16 +148,16 @@ export default function Navigation({ onOpenPartnerModal }: NavigationProps) {
                 }}
                 className="w-full flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-sm bg-[#1B4FD8] hover:bg-[#3B6EF5] text-[#FAFBFF] font-semibold text-[0.88rem] tracking-[0.06em] uppercase transition-all shadow-lg cursor-pointer"
               >
-                <span>Request Target Hydration Audit</span>
+                <span>{site.hero.primaryCta}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
               <div className="text-center pt-2">
                 <a
-                  href="mailto:info@euphemia.ai"
+                  href={`mailto:${site.contact.email}`}
                   className="text-[0.8rem] text-[#8B91B0] hover:text-[#C9A84C] transition-colors"
                 >
-                  Direct Inquiry: info@euphemia.ai
+                  Direct Inquiry: {site.contact.email}
                 </a>
               </div>
             </div>

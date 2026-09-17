@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Play, Pause, Layers, Eye, EyeOff, RotateCcw, ZoomIn, ZoomOut, Info } from "lucide-react";
+import { site } from "@/content/site";
 
 type SimulationMode = "delta_g" | "gcmc" | "docking";
 
@@ -818,10 +819,10 @@ export default function HeroSimulation() {
         <div className="flex items-center gap-2.5">
           <div className="w-2.5 h-2.5 rounded-full bg-[#1B4FD8] animate-pulse" />
           <span className="text-[0.72rem] font-mono uppercase tracking-[0.16em] text-[#FAFBFF]">
-            GCMC Binding Pocket Engine
+            {site.simulation.title}
           </span>
           <span className="text-[0.65rem] px-2 py-0.5 rounded-full bg-[#1B4FD8]/20 text-[#70A0FF] border border-[#1B4FD8]/30 font-mono">
-            Explicit H₂O
+            {site.simulation.badge}
           </span>
         </div>
 
@@ -836,7 +837,7 @@ export default function HeroSimulation() {
                 : "text-[#8B91B0] hover:text-[#FAFBFF]"
             }`}
           >
-            ΔG Map
+            {site.simulation.modes.deltaG}
           </button>
           <button
             type="button"
@@ -847,7 +848,7 @@ export default function HeroSimulation() {
                 : "text-[#8B91B0] hover:text-[#FAFBFF]"
             }`}
           >
-            GCMC Trials
+            {site.simulation.modes.gcmc}
           </button>
           <button
             type="button"
@@ -858,7 +859,7 @@ export default function HeroSimulation() {
                 : "text-[#8B91B0] hover:text-[#FAFBFF]"
             }`}
           >
-            Ligand Pose
+            {site.simulation.modes.docking}
           </button>
         </div>
       </div>
@@ -888,10 +889,10 @@ export default function HeroSimulation() {
             className={`flex items-center gap-1 px-1.5 py-0.5 rounded cursor-pointer transition-colors ${
               showReceptor ? "text-[#70A0FF] bg-[#1B4FD8]/25" : "text-[#8B91B0] hover:text-[#FAFBFF]"
             }`}
-            title="Toggle protein cavity atoms"
+            title={site.simulation.controls.tooltipPocket}
           >
             {showReceptor ? <Eye className="w-3 h-3" /> : <EyeOff className="w-3 h-3" />}
-            <span>Pocket</span>
+            <span>{site.simulation.controls.pocket}</span>
           </button>
           <span className="text-white/20">|</span>
           <button
@@ -900,10 +901,10 @@ export default function HeroSimulation() {
             className={`flex items-center gap-1 px-1.5 py-0.5 rounded cursor-pointer transition-colors ${
               showGrid ? "text-[#E8C96A] bg-[#C9A84C]/25" : "text-[#8B91B0] hover:text-[#FAFBFF]"
             }`}
-            title="Toggle energy field mesh"
+            title={site.simulation.controls.tooltipField}
           >
             <Layers className="w-3 h-3" />
-            <span>Field</span>
+            <span>{site.simulation.controls.field}</span>
           </button>
           <span className="text-white/20">|</span>
           <button
@@ -912,9 +913,9 @@ export default function HeroSimulation() {
             className={`flex items-center gap-1 px-1.5 py-0.5 rounded cursor-pointer transition-colors ${
               showLabels ? "text-[#FAFBFF] bg-white/10" : "text-[#8B91B0] hover:text-[#FAFBFF]"
             }`}
-            title="Toggle ΔG tags"
+            title={site.simulation.controls.tooltipTags}
           >
-            <span>Tags</span>
+            <span>{site.simulation.controls.tags}</span>
           </button>
         </div>
 
@@ -924,7 +925,7 @@ export default function HeroSimulation() {
             type="button"
             onClick={() => handleZoom(-0.15)}
             className="w-6 h-6 flex items-center justify-center rounded hover:bg-white/10 text-[#8B91B0] hover:text-[#FAFBFF] transition-colors cursor-pointer"
-            title="Zoom out"
+            title={site.simulation.controls.zoomOut}
           >
             <ZoomOut className="w-3.5 h-3.5" />
           </button>
@@ -935,7 +936,7 @@ export default function HeroSimulation() {
             type="button"
             onClick={() => handleZoom(0.15)}
             className="w-6 h-6 flex items-center justify-center rounded hover:bg-white/10 text-[#8B91B0] hover:text-[#FAFBFF] transition-colors cursor-pointer"
-            title="Zoom in"
+            title={site.simulation.controls.zoomIn}
           >
             <ZoomIn className="w-3.5 h-3.5" />
           </button>
@@ -957,32 +958,32 @@ export default function HeroSimulation() {
         {mode === "gcmc" && (
           <div className="absolute top-14 right-3 bg-[#080A10]/90 backdrop-blur-md border border-[#3B6EF5]/30 px-2.5 py-1.5 rounded-sm text-[0.65rem] font-mono text-[#70A0FF] z-10 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#3B6EF5] animate-ping" />
-            <span>μ = -6.2 kcal/mol | Active GCMC Sampling</span>
+            <span>{site.simulation.telemetry.gcmcSampling}</span>
           </div>
         )}
 
         {/* Thermodynamic Telemetry Banner (Bottom Left/Center) */}
         <div className="absolute bottom-3 left-3 right-3 sm:right-auto sm:max-w-sm bg-[#080A10]/92 backdrop-blur-md border border-white/[0.08] p-3 rounded-sm text-xs pointer-events-auto shadow-2xl z-10">
           <div className="flex items-center justify-between text-[0.68rem] text-[#8B91B0] pb-1.5 border-b border-white/[0.06]">
-            <span className="font-mono text-[#FAFBFF] font-semibold">Cavity Hydration Energetics</span>
-            <span className="text-[#C9A84C] font-mono">T = 300 K (1 atm)</span>
+            <span className="font-mono text-[#FAFBFF] font-semibold">{site.simulation.controls.telemetryTitle}</span>
+            <span className="text-[#C9A84C] font-mono">{site.simulation.controls.telemetryTemp}</span>
           </div>
 
           <div className="grid grid-cols-3 gap-2 pt-2 text-center font-mono">
             <div className="p-1 rounded bg-white/[0.02] border border-white/[0.04]">
-              <div className="text-[0.62rem] uppercase text-[#8B91B0]">Hot Waters</div>
-              <div className="text-sm font-bold text-[#C03A2B]">3 sites</div>
-              <div className="text-[0.6rem] text-[#E8C96A]">+4.2 kcal</div>
+              <div className="text-[0.62rem] uppercase text-[#8B91B0]">{site.simulation.controls.telemetryHot}</div>
+              <div className="text-sm font-bold text-[#C03A2B]">{site.simulation.telemetry.hotSites}</div>
+              <div className="text-[0.6rem] text-[#E8C96A]">{site.simulation.telemetry.hotEnergy}</div>
             </div>
             <div className="p-1 rounded bg-white/[0.02] border border-white/[0.04]">
-              <div className="text-[0.62rem] uppercase text-[#8B91B0]">Structural</div>
-              <div className="text-sm font-bold text-[#3B6EF5]">3 sites</div>
-              <div className="text-[0.6rem] text-[#8B91B0]">-5.4 kcal</div>
+              <div className="text-[0.62rem] uppercase text-[#8B91B0]">{site.simulation.controls.telemetryStructural}</div>
+              <div className="text-sm font-bold text-[#3B6EF5]">{site.simulation.telemetry.structuralSites}</div>
+              <div className="text-[0.6rem] text-[#8B91B0]">{site.simulation.telemetry.structuralEnergy}</div>
             </div>
             <div className="p-1 rounded bg-white/[0.02] border border-white/[0.04]">
-              <div className="text-[0.62rem] uppercase text-[#8B91B0]">Displacement</div>
-              <div className="text-sm font-bold text-[#C9A84C]">-2.8 kcal</div>
-              <div className="text-[0.6rem] text-[#FAFBFF]">&gt;100x Kd</div>
+              <div className="text-[0.62rem] uppercase text-[#8B91B0]">{site.simulation.controls.telemetryDisplacement}</div>
+              <div className="text-sm font-bold text-[#C9A84C]">{site.simulation.telemetry.displacementGain}</div>
+              <div className="text-[0.6rem] text-[#FAFBFF]">{site.simulation.telemetry.displacementKd}</div>
             </div>
           </div>
         </div>
@@ -998,7 +999,7 @@ export default function HeroSimulation() {
             aria-label={isPlaying ? "Pause rotation" : "Play rotation"}
           >
             {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
-            <span>{isPlaying ? "Pause" : "Rotate"}</span>
+            <span>{isPlaying ? site.simulation.controls.pause : site.simulation.controls.rotate}</span>
           </button>
 
           <button
@@ -1008,19 +1009,19 @@ export default function HeroSimulation() {
             aria-label="Reset simulation perspective"
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            <span>Reset View</span>
+            <span>{site.simulation.controls.reset}</span>
           </button>
         </div>
 
         <div className="flex items-center gap-3 font-mono text-[0.65rem]">
           <span className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#E8C96A] shadow-sm shadow-[#E8C96A]/50" /> Displaceable (+ΔG)
+            <span className="w-2.5 h-2.5 rounded-full bg-[#E8C96A] shadow-sm shadow-[#E8C96A]/50" /> {site.simulation.controls.legendDisplaceable}
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#1B4FD8] shadow-sm shadow-[#1B4FD8]/50" /> Structural (-ΔG)
+            <span className="w-2.5 h-2.5 rounded-full bg-[#1B4FD8] shadow-sm shadow-[#1B4FD8]/50" /> {site.simulation.controls.legendStructural}
           </span>
           <span className="hidden sm:flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#48C774]" /> Ligand Core
+            <span className="w-2.5 h-2.5 rounded-full bg-[#48C774]" /> {site.simulation.controls.legendLigand}
           </span>
         </div>
       </div>
