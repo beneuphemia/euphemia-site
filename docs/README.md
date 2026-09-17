@@ -15,3 +15,12 @@ develop it, and how to keep its science accurate.
 - Science references: `REFERENCES.md`
 - Design tokens: `app/theme.ts` and `app/globals.css`
 - Git workflow: see `README.md`
+
+## GitHub wiki mirror
+
+This folder is the source of truth. The GitHub wiki is an exact read-only mirror
+of it. After editing any page here, run:
+
+```bash
+pwsh scripts/sync-wiki.ps1
+```
