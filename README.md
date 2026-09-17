@@ -44,6 +44,10 @@ Review rules:
 - No auto-approve or auto-merge, ever.
 - Agents must not approve or merge PRs: see `AGENTS.md` (euph-site-agent).
 
+Agents: use the agent in `AGENTS.md` (euph-site-agent) for any AI work in this repo.
+When something goes wrong or a rule is missing, correct and improve `AGENTS.md`
+so lessons learned carry forward to every future agent.
+
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\sync-wiki.ps1
 ```
