@@ -47,23 +47,44 @@ cloudflared tunnel --url http://localhost:3001
 
 ## Project layout
 
-- `content/site.ts` — single source of truth for all website copy. To change wording, edit this file only.
-- `app/theme.ts` — design tokens (colors, glows, type families).
-- `app/globals.css` — CSS variables wired to the theme tokens.
-- `components/` — UI components. The simulations and animations live in:
-  - `HeroSimulation.tsx` — interactive 3D binding-cavity simulation (hero).
-  - `SolvationFieldAnimation.tsx` — full-bleed solvation-field background animation (hero).
-  - `InteractiveHydrationExplorer.tsx` — 2D pocket hydration explorer with example targets.
+- `content/site.ts`: single source of truth for all website copy. To change wording, edit this file only.
+- `app/theme.ts`: design tokens (colors, glows, type families).
+- `app/globals.css`: CSS variables wired to the theme tokens.
+- `components/`: UI components. The simulations and animations live in:
+  - `HeroSimulation.tsx`: interactive 3D binding-cavity simulation (hero).
+  - `SolvationFieldAnimation.tsx`: full-bleed solvation-field background animation (full page).
+  - `InteractiveHydrationExplorer.tsx`: 2D pocket hydration explorer with example targets.
+
+## Git workflow
+
+Long-lived branches:
+
+- `main`: production, deployed to Vercel on merge. Nothing merges here except a single, jointly-approved go-live PR.
+- `develop/develop`: shared integration branch. All work lands here first.
+- `develop/matt`: Matt's personal branch.
+- `develop/ben`: Ben's (CSO) personal branch.
+
+Day-to-day:
+
+1. Matt works on `develop/matt`, then opens a PR from `develop/matt` into `develop/develop`.
+2. Ben (CSO) works on `develop/ben`, then opens a PR from `develop/ben` into `develop/develop`.
+3. Review and merge each other's PRs into `develop/develop`.
+4. Go-live: when both are happy, open one PR from `develop/develop` into `main`, get both approvals, then merge. Vercel deploys it.
+
+Copy and science changes:
+
+- All wording lives in `content/site.ts`. Edit it there.
+- Every science claim must be referenced in `REFERENCES.md` before merging.
 
 ## Design system: color tokens
 
 The palette (named in the redesign):
 
-- **Physics Blue** `#1B4FD8` — physics, simulation
-- **ML Gold** `#C9A84C` — machine learning
-- **Truth Crimson** `#C03A2B` — truth, validation
-- **Obsidian Inks** `#080A10` — backgrounds and surfaces
-- **Technical mist accents** `#8B91B0` — secondary text
+- **Physics Blue** `#1B4FD8`: physics, simulation
+- **ML Gold** `#C9A84C`: machine learning
+- **Truth Crimson** `#C03A2B`: truth, validation
+- **Obsidian Inks** `#080A10`: backgrounds and surfaces
+- **Technical mist accents** `#8B91B0`: secondary text
 
 Motto: *veritas per aquam*
 
