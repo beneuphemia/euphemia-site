@@ -1,25 +1,23 @@
-# Euphemia website wiki
+# Website wiki
 
-Documentation for the Euphemia marketing site: what it is, who it is for, how to
-develop it, and how to keep its science accurate.
+How to maintain the Euphemia marketing site.
 
-## Pages
-
-- [Website brief](website-brief.md): who we are, what the site is for, audience and tone.
-- [Development](development.md): how to run it, project layout, where the copy and animations live.
-- [Science](science.md): how science claims are represented, reviewed, and referenced.
-
-## Quick links
+## Where things are
 
 - Copy (all wording): `content/site.ts`
 - Science references: `REFERENCES.md`
 - Design tokens: `app/theme.ts` and `app/globals.css`
-- Git workflow: see `README.md`
+- Animations: `components/`
+- Git workflow: repo `README.md`
 
-## GitHub wiki mirror
+## Pages
 
-This folder is the source of truth. The GitHub wiki is an exact read-only mirror
-of it. After editing any page here, run:
+- [Development](development.md): run it and change stuff
+- [Science](science.md): keep the science correct
+
+## Wiki mirror
+
+The GitHub wiki mirrors this folder. After editing a page here, sync it:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\sync-wiki.ps1
