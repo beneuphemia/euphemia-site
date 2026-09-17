@@ -9,7 +9,7 @@ export default function Footer({ onOpenPartnerModal }: { onOpenPartnerModal: () 
   };
 
   return (
-    <footer className="bg-[#080A10] border-t border-white/[0.08] text-[#8B91B0] text-xs pt-16 pb-12">
+    <footer className="relative bg-[#080A10] border-t border-white/[0.08] text-[#8B91B0] text-xs pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pb-12 border-b border-white/[0.06]">
           {/* Brand Column */}

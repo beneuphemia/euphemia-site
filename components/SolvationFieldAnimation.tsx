@@ -241,7 +241,7 @@ export default function SolvationFieldAnimation() {
     <div
       ref={containerRef}
       aria-hidden="true"
-      className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0"
+      className="fixed inset-0 overflow-hidden pointer-events-none z-0"
     >
       <canvas ref={canvasRef} className="w-full h-full block opacity-85" />
     </div>
