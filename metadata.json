@@ -1,6 +1,0 @@
-{
-  "name": "Euphemia",
-  "description": "Computational drug discovery powered by rigorous physics simulation and machine learning.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
