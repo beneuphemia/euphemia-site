@@ -33,7 +33,7 @@ export const site = {
    * METADATA (page <title>, description, social) — CURRENT COPY
    * ──────────────────────────────────────────────────────────────── */
   meta: {
-    title: "Euphemia — Physics-Based Drug Discovery",
+    title: "Euphemia: Physics-Based Drug Discovery",
     description:
       "Computational drug discovery powered by rigorous physics simulation and machine learning. Specialists in water network and solvation modeling.",
     keywords: [
@@ -76,7 +76,7 @@ export const site = {
     headlineA: "The physics of",
     headlineB: "water, made precise.",
     body:
-      "Euphemia combines rigorous molecular simulation with machine learning to map solvation networks that conventional docking ignores — turning water from noise into signal.",
+      "Euphemia combines rigorous molecular simulation with machine learning to map solvation networks that conventional docking ignores, turning water from noise into signal.",
     primaryCta: "Partner with us",
     primaryCtaHref: "#contact",
     secondaryCta: "Our science →",
@@ -102,14 +102,14 @@ export const site = {
         tag: "Physics",
         title: "Grand Canonical Monte Carlo",
         body:
-          "We use GCMC/MD to equilibrate explicit water networks across binding sites at thermodynamic resolution — finding every occupied, displáceable, and structural water position.",
+          "We use GCMC/MD to equilibrate explicit water networks across binding sites at thermodynamic resolution, finding every occupied, displaceable, and structural water position.",
       },
       {
         id: "ml",
         tag: "Machine Learning",
         title: "ML-accelerated scoring",
         body:
-          "Solvation-aware descriptors trained on free energy data let us screen chemical space at scale without sacrificing physical accuracy — ML guided by physics, not replacing it.",
+          "Solvation-aware descriptors trained on free energy data let us screen chemical space at scale without sacrificing physical accuracy: ML guided by physics, not replacing it.",
       },
       {
         id: "truth",
@@ -130,7 +130,7 @@ export const site = {
     headingB: "ML as the accelerant.",
     paragraphs: [
       "The field has bifurcated into two camps: empirical ML models that train on affinity data without physical understanding, and academic simulation workflows too slow for drug discovery timescales.",
-      "Euphemia sits at neither pole. Physics sets the boundary conditions; machine learning navigates within them. The result is predictions that generalise to novel chemotypes — the cases where data-only models fail.",
+      "Euphemia sits at neither pole. Physics sets the boundary conditions; machine learning navigates within them. The result is predictions that generalise to novel chemotypes, the cases where data-only models fail.",
     ],
     steps: [
       {
@@ -143,7 +143,7 @@ export const site = {
         number: "02",
         title: "Solvation-aware virtual screening",
         description:
-          "ML scoring functions informed by water displacement thermodynamics — not just shape complementarity.",
+          "ML scoring functions informed by water displacement thermodynamics, not just shape complementarity.",
       },
       {
         number: "03",
@@ -191,7 +191,7 @@ export const site = {
     eyebrow: "Work with us",
     heading: "Serious about solvation?",
     body:
-      "We partner with biotech and pharma teams where water network modelling is a bottleneck — early target validation, hit-to-lead, or FEP campaign design. If you have a target and want to understand its hydration, let's talk.",
+      "We partner with biotech and pharma teams where water network modelling is a bottleneck: early target validation, hit-to-lead, or FEP campaign design. If you have a target and want to understand its hydration, let's talk.",
     email: "info@euphemia.ai",
   },
 
@@ -204,7 +204,7 @@ export const site = {
    * ──────────────────────────────────────────────────────────────── */
   explorer: {
     eyebrow: "Interactive Target Explorer",
-    heading: "How Solvation Thermodynamics Unlocks Nanomolar Affinity",
+    heading: "How Solvation Thermodynamics Drives Nanomolar Affinity",
     body:
       "Toggle binding-pocket water molecules below or click the 2D hydration map to observe how explicit displacement thermodynamics drives compound potency.",
     hint: "Click nodes to displace",
@@ -219,7 +219,7 @@ export const site = {
         conventionalDockingError:
           "Glide/AutoDock scored lead series at >10 µM due to ignoring 3 trapped, high-energy waters.",
         euphemiaAdvantage:
-          "Euphemia GCMC mapped a cluster of 3 unstable waters (ΔG = +4.1 kcal/mol). Synthesizing a tailored naphthyl moiety that expels W2 & W3 unlocked 3.2 nM potency.",
+          "Euphemia GCMC mapped a cluster of 3 unstable waters (ΔG = +4.1 kcal/mol). Synthesizing a tailored naphthyl moiety that expels W2 & W3 delivered 3.2 nM potency.",
         defaultKd: "480 nM",
         optimizedKd: "3.2 nM",
         deltaDeltaG: "-2.9 kcal/mol",
