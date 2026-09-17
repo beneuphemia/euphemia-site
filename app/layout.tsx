@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Euphemia — Physics-Based Drug Discovery",
-  description: "Computational drug discovery powered by rigorous physics simulation and machine learning. Specialists in water network and solvation modeling.",
-  keywords: ["drug discovery", "molecular simulation", "computational chemistry", "FEP", "solvation", "water networks"],
+  title: "Euphemia — Physics-Based Drug Discovery & Solvation Science",
+  description: "Computational drug discovery powered by rigorous molecular physics simulation and machine learning. Mapping cryptic binding-site water networks and solvation thermodynamics.",
+  keywords: ["drug discovery", "molecular simulation", "computational chemistry", "FEP", "solvation", "water networks", "biophysics", "GCMC"],
   openGraph: {
-    title: "Euphemia",
-    description: "Where physics meets drug discovery.",
+    title: "Euphemia — Physics-Based Drug Discovery",
+    description: "Where rigorous molecular physics meets computational drug discovery.",
     type: "website",
   },
 };
@@ -18,16 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="noise-overlay">
+    <html lang="en" className={inter.variable}>
+      <body className="noise-overlay font-sans antialiased selection:bg-[#C9A84C]/25 selection:text-[#FAFBFF]">
         {children}
       </body>
     </html>
